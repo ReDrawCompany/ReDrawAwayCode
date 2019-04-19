@@ -73,7 +73,7 @@ let cmds = {
     },
     eval( codes ) {
         let out = "";
-        let dict = "+-<>[].,".split( "" );
+        let dict = "+-<>[].,s".split( "" );
         for( let i of codes ) {
             out += dict[ i ];
         }
