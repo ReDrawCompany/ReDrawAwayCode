@@ -11,7 +11,7 @@ let cmds = {
             usrcode += r( ">", outpos[ i ] ) + "+" + r( ">", outpos[ i ] );
         }
 
-        let out = `${ r( ">", inpos[ 0 ] ) }[-${ r( "<", inpos[ 0 ] ) }${ usrcode }${ r( ">", inpos[ 0 ] ) }]${ r( "<", inpos[ 0 ] ) }`;
+        return `${ r( ">", inpos[ 0 ] ) }[-${ r( "<", inpos[ 0 ] ) }${ usrcode }${ r( ">", inpos[ 0 ] ) }]${ r( "<", inpos[ 0 ] ) }`;
     }
 };
 function getCode( funcObject ) {
