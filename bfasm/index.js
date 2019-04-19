@@ -1,3 +1,7 @@
+let ghpages = {
+    ver: 0
+} 
+
 let config = {
     dualMem: true
 }
