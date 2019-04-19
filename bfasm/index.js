@@ -27,3 +27,29 @@ function convert( litArr ) {
     }
     return out;
 }
+
+function bf( code ) {
+    out = `
+let mem = new Uint8Array(256);
+let pointer = 0;`;
+    for(let i = 0; i<code.length;i++) {
+        switch(code.charAt(i)) {
+            case ">":
+                out += "pointer++;"
+            case "<":
+                out += "pointer--;"
+            case "+":
+                out += "mem[pointer]++;"
+            case "-":
+                out += "mem[pointer]--;"
+            case ".":
+                out += "alert(mem[pointer]);"
+            case ",":
+                out += "mem[pointer] = prompt('?');"
+            case "[":
+                out += "while(mem[pointer == 0]) {"
+            case "]":
+                out += "};"
+        }
+    }
+}
