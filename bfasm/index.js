@@ -22,6 +22,15 @@ let cmds = {
 
         return `${ r( ">", inpos[ 0 ] ) }[-${ r( "<", inpos[ 0 ] ) }${ usrcode }${ r( ">", inpos[ 0 ] ) }]${ r( "<", inpos[ 0 ] ) }`;
     },
+    movswp( inpos, outpos ) {
+        let usrcode = "";
+
+        for( let i = 0;i < outpos.length;i++ ) {
+            usrcode += r( ">", outpos[ i ] ) + "s+s" + r( "<", outpos[ i ] );
+        }
+
+        return `${ r( ">", inpos[ 0 ] ) }[-${ r( "<", inpos[ 0 ] ) }${ usrcode }${ r( ">", inpos[ 0 ] ) }]${ r( "<", inpos[ 0 ] ) }`;
+    },
     add( outpos, inpos ) {
         let usrcode = "";
 
