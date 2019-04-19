@@ -103,9 +103,11 @@ let pointer = 0;`;
             case "s":
                 if( config.dualMem ) {
                     out += `
-let temp1 = mem;
-mem = mem2;
-mem2 = temp1;`;
+{
+    let temp1 = mem;
+    mem = mem2;
+    mem2 = temp1;
+}`;
                 }
                 break;
         }
