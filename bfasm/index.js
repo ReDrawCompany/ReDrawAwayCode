@@ -88,7 +88,7 @@ let cmds = {
             usrcode += convert`swpb ${ inpos[ i ] }`;
             usrcode += convert`mov ${ inpos[ i ] + inpos.length } ${ inpos[ i ] }`
             // usrcode += convert`mov ${ inpos[ i ] } ${ outpos[ 0 ] }`;
-            usrcode += `${ r( ">", inpos[ i ] ) }[-${ r( "<", inpos[ i ] ) }${ r( ">", outpos[ 0 ] ) }s+b${ r( "<", outpos[ 0 ] ) }${ r( ">", inpos[ i ] ) }]${ r( "<", inpos[ i ] ) }`;
+            usrcode += `${ r( ">", inpos[ i ] ) }[-${ r( "<", inpos[ i ] ) }${ r( ">", outpos[ 0 ] ) }b+s${ r( "<", outpos[ 0 ] ) }${ r( ">", inpos[ i ] ) }]${ r( "<", inpos[ i ] ) }`;
         }
 
         usrcode += "b";
