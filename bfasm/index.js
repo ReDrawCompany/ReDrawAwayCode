@@ -1,3 +1,7 @@
+let config = {
+    dualMem: true
+}
+
 function r( c, t ) {
     let o = "";
     for( let i = 0;i < t;i++ ) { o += c }
