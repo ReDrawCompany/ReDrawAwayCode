@@ -42,7 +42,8 @@ let cmds = {
     },
     add( inpos, outpos ) {
         let usrcode = "";
-
+        console.log(inpos);
+        console.log(outpos);
         usrcode += convert`swp ${ inpos.toString() }`;
         usrcode += "s";
         for( let i = 0;i < inpos.length;i++ ) {
