@@ -50,7 +50,6 @@ let cmds = {
             usrcode += convert`mov ${ inpos[ i ] + inpos.length * 2 } ${ inpos[ i ] }`
         }
 
-
         usrcode += "s";
         return usrcode;
     }
