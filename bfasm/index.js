@@ -1,6 +1,6 @@
 let ghpages = {
     ver: 3
-} 
+}
 
 let config = {
     dualMem: true
@@ -31,19 +31,33 @@ let cmds = {
 
         return usrcode;
     },
-    swp(pos) {
+    swp( pos ) {
         let usrcode = "";
 
         for( let i = 0;i < pos.length;i++ ) {
             usrcode += r( ">", pos[ i ] ) + "[-s+s]" + r( "<", pos[ i ] );
         }
-        
+
+        return usrcode;
+    },
+    add( inpos, outpos ) {
+        let usrcode = "";
+
+        usrcode += convert`swp ${ inpos.toString() }`;
+        usrcode += "s";
+        for( let i = 0;i < inpos.length;i++ ) {
+            usrcode += convert`mov ${ inpos[ i ] } ${ inpos[ i ] + inpos.length },${ inpos[ i ] + inpos.length * 2 }`;
+            usrcode += convert`mov ${ inpos[ i ] + inpos.length * 2 } ${ inpos[ i ] }`
+        }
+
+
+        usrcode += "s";
         return usrcode;
     }
 };
 
 function getCode( funcObject ) {
-    return (cmds[ funcObject.cmd ]||console.error)( ...funcObject.args );
+    return ( cmds[ funcObject.cmd ] || console.error )( ...funcObject.args );
 }
 
 function cleanBF( code, rec ) {
