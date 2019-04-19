@@ -22,7 +22,7 @@ let cmds = {
 
         return `${ r( ">", inpos[ 0 ] ) }[-${ r( "<", inpos[ 0 ] ) }${ usrcode }${ r( ">", inpos[ 0 ] ) }]${ r( "<", inpos[ 0 ] ) }`;
     },
-    add( inpos, outpos ) {
+    add( outpos, inpos ) {
         let usrcode = "";
 
         for( let i = 0;i < inpos.length;i++ ) {
@@ -31,7 +31,7 @@ let cmds = {
 
         return usrcode;
     },
-    sub( inpos, outpos ) {
+    sub( outpos, inpos ) {
         let usrcode = "";
 
         for( let i = 0;i < inpos.length;i++ ) {
@@ -92,17 +92,17 @@ function cleanBF( code, rec ) {
 function getStringForLitArr( argu ) {
     let args = Array.from( argu );
     let out = args[ 0 ][ 0 ];
-    let strs = args[0].slice(1);
+    let strs = args[ 0 ].slice( 1 );
     let rest = args.slice( 1 );
 
-    for(let i = 0;i<strs.length;i++) {
-        out += rest[i] + strs[i];
+    for( let i = 0;i < strs.length;i++ ) {
+        out += rest[ i ] + strs[ i ];
     }
     return out;
 }
 
 function convert( litArr ) {
-    let text = ( typeof litArr == "string" ) ? litArr : getStringForLitArr(arguments);
+    let text = ( typeof litArr == "string" ) ? litArr : getStringForLitArr( arguments );
     let parsed = parser.parse( text );
     let out = "";
     for( let i = 0;i < parsed.length;i++ ) {
