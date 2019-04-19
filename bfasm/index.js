@@ -12,7 +12,6 @@ let cmds = {
         }
 
         return `${ r( ">", inpos[ 0 ] ) }[-${ r( "<", inpos[ 0 ] ) }${ usrcode }${ r( ">", inpos[ 0 ] ) }]${ r( "<", inpos[ 0 ] ) }`;
-
     }
 };
 function getCode( funcObject ) {
