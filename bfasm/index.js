@@ -32,7 +32,11 @@ function cleanBF( code ) {
     code = code.replace( /\>\</, "" );
     code = code.replace( /\+\-/, "" );
     code = code.replace( /\-\+/, "" );
-    return code;
+    if( code !== cleanBF( code ) ) {
+        return cleanBF( code );
+    } else {
+        return code;
+    }
 }
 
 function convert( litArr ) {
