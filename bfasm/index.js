@@ -22,7 +22,7 @@ let cmds = {
 
         return usrcode;
     },
-    movswp(pos) {
+    swp(pos) {
         let usrcode = "";
 
         for( let i = 0;i < outpos.length;i++ ) {
