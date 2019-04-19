@@ -54,6 +54,7 @@ function convert( litArr ) {
 function bf( code ) {
     out = `
 let mem = new Uint8Array(256);
+let mem2 = new Uint8Array(256);
 let pointer = 0;`;
     for( let i = 0;i < code.length;i++ ) {
         switch( code.charAt( i ) ) {
@@ -79,6 +80,9 @@ let pointer = 0;`;
                 out += "\nwhile(mem[pointer] !== 0) {"
                 break;
             case "]":
+                out += "\n};"
+                break;
+            case "s":
                 out += "\n};"
                 break;
         }
