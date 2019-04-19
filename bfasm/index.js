@@ -58,6 +58,7 @@ let pointer = 0;`;
             case "]":
                 out += "\n};"
                 break;
+                
         }
     }
     return new Function("",out);
