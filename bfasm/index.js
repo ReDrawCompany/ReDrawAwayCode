@@ -13,11 +13,11 @@ let cmds = {
 
         return `${ r( ">", inpos[ 0 ] ) }[-${ r( "<", inpos[ 0 ] ) }${ usrcode }${ r( ">", inpos[ 0 ] ) }]${ r( "<", inpos[ 0 ] ) }`;
     },
-    "set":function( inpos, outpos ) {
+    "set": function( inpos, outpos ) {
         let usrcode = "";
 
         for( let i = 0;i < inpos.length;i++ ) {
-            usrcode += r( ">", inpos[ i ] ) + r("+",outpos[0]) + r( "<", inpos[ i ] );
+            usrcode += r( ">", inpos[ i ] ) + r( "+", outpos[ 0 ] ) + r( "<", inpos[ i ] );
         }
 
         return usrcode;
@@ -42,6 +42,7 @@ function convert( litArr ) {
     for( let i = 0;i < parsed.length;i++ ) {
         out += getCode( parsed[ i ] );
     }
+    console.log(parsed);
     out = cleanBF( out );
     return out;
 }
@@ -81,5 +82,5 @@ let pointer = 0;`;
     }
     out += "\n\nreturn {pointer, mem};";
     return new Function( "", out );
-    
+
 }
