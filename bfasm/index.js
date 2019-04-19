@@ -3,7 +3,8 @@ let ghpages = {
 }
 
 let config = {
-    dualMem: true
+    dualMem: true,
+    dualMemDist: 32
 }
 
 function r( c, t ) {
