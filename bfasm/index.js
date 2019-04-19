@@ -1,5 +1,5 @@
 let ghpages = {
-    ver: 5
+    ver: 6
 }
 
 let config = {
@@ -42,7 +42,7 @@ let cmds = {
     },
     add( inpos, outpos ) {
         let usrcode = "";
-        
+
         usrcode += convert`swp ${ JSON.stringify( inpos ) }`;
         usrcode += "s";
         for( let i = 0;i < inpos.length;i++ ) {
