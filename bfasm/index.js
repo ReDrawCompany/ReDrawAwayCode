@@ -92,7 +92,7 @@ function cleanBF( code, rec ) {
 function getStringForLitArr( argu ) {
     let args = Array.from( argu );
     let out = args[ 0 ][ 0 ];
-    let strs = args[0];
+    let strs = args[0].slice(1);
     let rest = args.slice( 1 );
 
     for(let i = 0;i<strs.length;i++) {
