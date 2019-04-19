@@ -79,7 +79,7 @@ let cmds = {
             usrcode += convert`swp ${ inpos[ i ] }`;
             usrcode += convert`mov ${ inpos[ i ] + inpos.length } ${ inpos[ i ] }`
             // usrcode += convert`mov ${ inpos[ i ] } ${ outpos[ 0 ] }`;
-            usrcode += `${r(">",inpos[i])}[-${r("<",inpos[i])}${r(">",outpos[0])}s+b${r("<",outpos[0])}${r(">",inpos[i])}]${r("<",inpos[i])}`;
+            usrcode += `${ r( ">", inpos[ i ] ) }[-${ r( "<", inpos[ i ] ) }${ r( ">", outpos[ 0 ] ) }s+b${ r( "<", outpos[ 0 ] ) }${ r( ">", inpos[ i ] ) }]${ r( "<", inpos[ i ] ) }`;
         }
 
         usrcode += "b";
@@ -110,9 +110,9 @@ function cleanBF( code, rec ) {
         return code;
     }
 }
-function origBF(code) {
-    code = code.replace(/s/g, r(">",128));
-    code = code.replace(/b/g, r("<",128));
+function origBF( code ) {
+    code = code.replace( /s/g, r( ">", config.dualMemDist ) );
+    code = code.replace( /b/g, r( "<", config.dualMemDist ) );
     return code;
 }
 
@@ -135,7 +135,7 @@ function convert( litArr ) {
     for( let i = 0;i < parsed.length;i++ ) {
         out += getCode( parsed[ i ] );
     }
-    out = origBF(out);
+    out = origBF( out );
     out = cleanBF( out );
     return out;
 }
@@ -152,7 +152,7 @@ let tempvar = null;`;
                 out += "\npointer=(pointer+257)%256;"
                 break;
             case "<":
-                out += "\npointer=(pointer+255)%256;"            
+                out += "\npointer=(pointer+255)%256;"
                 break;
             case "+":
                 out += "\nmem[pointer]++;"
