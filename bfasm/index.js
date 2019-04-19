@@ -142,10 +142,10 @@ let tempvar = null;`;
     for( let i = 0;i < code.length;i++ ) {
         switch( code.charAt( i ) ) {
             case ">":
-                out += "\npointer++;"
+                out += "\npointer=(pointer+257)%256;"
                 break;
             case "<":
-                out += "\npointer--;"
+                out += "\npointer=(pointer+255)%256;"            
                 break;
             case "+":
                 out += "\nmem[pointer]++;"
