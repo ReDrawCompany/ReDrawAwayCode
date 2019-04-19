@@ -34,7 +34,7 @@ let cmds = {
 };
 
 function getCode( funcObject ) {
-    return cmds[ funcObject.cmd ]( ...funcObject.args );
+    return (cmds[ funcObject.cmd ]||console.error)( ...funcObject.args );
 }
 
 function cleanBF( code, rec ) {
