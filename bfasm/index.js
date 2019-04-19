@@ -35,28 +35,28 @@ let pointer = 0;`;
     for(let i = 0; i<code.length;i++) {
         switch(code.charAt(i)) {
             case ">":
-                out += "pointer++;"
+                out += "\npointer++;"
                 break;
             case "<":
-                out += "pointer--;"
+                out += "\npointer--;"
                 break;
             case "+":
-                out += "mem[pointer]++;"
+                out += "\nmem[pointer]++;"
                 break;
             case "-":
-                out += "mem[pointer]--;"
+                out += "\nmem[pointer]--;"
                 break;
             case ".":
-                out += "alert(mem[pointer]);"
+                out += "\nalert(mem[pointer]);"
                 break;
             case ",":
-                out += "mem[pointer] = prompt('?');"
+                out += "\nmem[pointer] = prompt('?');"
                 break;
             case "[":
-                out += "while(mem[pointer == 0]) {"
+                out += "\nwhile(mem[pointer == 0]) {"
                 break;
             case "]":
-                out += "};"
+                out += "\n};"
                 break;
                 
         }
