@@ -42,7 +42,6 @@ function convert( litArr ) {
     for( let i = 0;i < parsed.length;i++ ) {
         out += getCode( parsed[ i ] );
     }
-    console.log(parsed);
     out = cleanBF( out );
     return out;
 }
