@@ -69,7 +69,7 @@ let cmds = {
             usrcode += convert`swp ${ inpos[ i ] }`;
             usrcode += convert`mov ${ inpos[ i ] + inpos.length } ${ inpos[ i ] }`
             usrcode += convert`mov ${ inpos[ i ] } ${ outpos[ 0 ] }`;
-            usrcode += convert`swp ${ outpos[ 0 ] }`;
+            usrcode += `${r(">",inpos[i])}[-${r("<",inpos[i])}${r(">",outpos[0])}s+s${r("<",outpos[0])}${r(">",inpos[i])}]`;
         }
 
         usrcode += "s";
