@@ -44,7 +44,7 @@ let cmds = {
         let usrcode = "";
 
         for( let i = 0;i < inpos.length;i++ ) {
-            usrcode += "[-]" + r( ">", inpos[ i ] ) + r( "+", outpos[ 0 ] ) + r( "<", inpos[ i ] );
+            usrcode += r( ">", inpos[ i ] ) + "[-]" + r( "+", outpos[ 0 ] ) + r( "<", inpos[ i ] );
         }
 
         return usrcode;
@@ -69,7 +69,7 @@ let cmds = {
             usrcode += convert`swp ${ JSON.stringify( inpos ) }`;
             usrcode += convert`mov ${ inpos[ i ] + inpos.length } ${ inpos[ i ] }`
             usrcode += convert`mov ${ inpos[ i ] } ${ outpos[ 0 ] }`;
-            usrcode += convert`swp ${ outpos[ 0 ] }`;            
+            usrcode += convert`swp ${ outpos[ 0 ] }`;
         }
 
         usrcode += "s";
