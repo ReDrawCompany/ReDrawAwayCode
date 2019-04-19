@@ -22,11 +22,29 @@ let cmds = {
 
         return `${ r( ">", inpos[ 0 ] ) }[-${ r( "<", inpos[ 0 ] ) }${ usrcode }${ r( ">", inpos[ 0 ] ) }]${ r( "<", inpos[ 0 ] ) }`;
     },
-    "set": function( inpos, outpos ) {
+    add( inpos, outpos ) {
         let usrcode = "";
 
         for( let i = 0;i < inpos.length;i++ ) {
             usrcode += r( ">", inpos[ i ] ) + r( "+", outpos[ 0 ] ) + r( "<", inpos[ i ] );
+        }
+
+        return usrcode;
+    },
+    sub( inpos, outpos ) {
+        let usrcode = "";
+
+        for( let i = 0;i < inpos.length;i++ ) {
+            usrcode += r( ">", inpos[ i ] ) + r( "-", outpos[ 0 ] ) + r( "<", inpos[ i ] );
+        }
+
+        return usrcode;
+    },
+    "set": function( inpos, outpos ) {
+        let usrcode = "";
+
+        for( let i = 0;i < inpos.length;i++ ) {
+            usrcode += "[-]" + r( ">", inpos[ i ] ) + r( "+", outpos[ 0 ] ) + r( "<", inpos[ i ] );
         }
 
         return usrcode;
@@ -40,7 +58,7 @@ let cmds = {
 
         return usrcode;
     },
-    add( inpos, outpos ) {
+    sum( inpos, outpos ) {
         let usrcode = "";
 
         usrcode += convert`swp ${ JSON.stringify( inpos ) }`;
