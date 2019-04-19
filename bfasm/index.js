@@ -77,7 +77,6 @@ let pointer = 0;`;
             case "]":
                 out += "\n};"
                 break;
-
         }
     }
     out += "\n\nreturn {pointer, mem};";
