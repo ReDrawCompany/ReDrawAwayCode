@@ -24,6 +24,7 @@ function cleanBF(code) {
     code = code.replace(/\+\-/,"");
     code = code.replace(/\-\+/,"");
     return code;
+    
 }
 
 function convert( litArr ) {
