@@ -32,6 +32,7 @@ let cmds = {
         return usrcode;
     }
 };
+
 function getCode( funcObject ) {
     return cmds[ funcObject.cmd ]( ...funcObject.args );
 }
