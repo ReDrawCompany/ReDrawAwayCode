@@ -39,6 +39,7 @@ function cleanBF( code ) {
     }
 }
 
+
 function convert( litArr ) {
     let text = litArr[ 0 ];
     let parsed = parser.parse( text );
