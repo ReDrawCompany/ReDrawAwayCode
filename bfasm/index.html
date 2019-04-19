@@ -1,4 +1,8 @@
 <script src="../grammars/bfasm.js"></script>
-<script type="module">
-    
+<script>
+    function convert(litArr) {
+        let text = litArr[0];
+        let parsed = parser.parse(text);
+        return parsed;
+    }
 </script>
