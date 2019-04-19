@@ -72,7 +72,7 @@ function cleanBF( code, rec ) {
 }
 
 function convert( litArr ) {
-    let text = litArr[ 0 ];
+    let text = (typeof litArr == "string")?litArr:litArr[ 0 ];
     let parsed = parser.parse( text );
     let out = "";
     for( let i = 0;i < parsed.length;i++ ) {
