@@ -113,6 +113,6 @@ let tempvar = null;`;
                 break;
         }
     }
-    out += "\n\nreturn {pointer, mem};";
+    out += "\n\nreturn {pointer, mem, mem2};";
     return new Function( "", out );
 }
