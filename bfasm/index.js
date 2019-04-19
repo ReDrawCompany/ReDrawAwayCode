@@ -50,7 +50,7 @@ let pointer = 0;`;
                 out += "\nalert(mem[pointer]);"
                 break;
             case ",":
-                out += "\nmem[pointer] = prompt('?');"
+                out += "\nmem[pointer] = parseInt(prompt('?'));"
                 break;
             case "[":
                 out += "\nwhile(mem[pointer !== 0]) {"
@@ -58,7 +58,7 @@ let pointer = 0;`;
             case "]":
                 out += "\n};"
                 break;
-                
+
         }
     }
     return new Function("",out);
