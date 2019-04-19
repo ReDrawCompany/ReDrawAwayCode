@@ -21,6 +21,15 @@ let cmds = {
         }
 
         return usrcode;
+    },
+    movswp(pos) {
+        let usrcode = "";
+
+        for( let i = 0;i < outpos.length;i++ ) {
+            usrcode += r( ">", outpos[ i ] ) + "[-s+s]" + r( "<", outpos[ i ] );
+        }
+        
+        return usrcode;
     }
 };
 function getCode( funcObject ) {
