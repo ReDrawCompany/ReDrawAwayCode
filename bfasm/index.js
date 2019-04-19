@@ -25,8 +25,8 @@ let cmds = {
     swp(pos) {
         let usrcode = "";
 
-        for( let i = 0;i < outpos.length;i++ ) {
-            usrcode += r( ">", outpos[ i ] ) + "[-s+s]" + r( "<", outpos[ i ] );
+        for( let i = 0;i < pos.length;i++ ) {
+            usrcode += r( ">", pos[ i ] ) + "[-s+s]" + r( "<", pos[ i ] );
         }
         
         return usrcode;
