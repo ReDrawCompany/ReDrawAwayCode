@@ -21,5 +21,9 @@ function getCode( funcObject ) {
 function convert( litArr ) {
     let text = litArr[ 0 ];
     let parsed = parser.parse( text );
-    return parsed;
+    let out = "";
+    for(let i = 0;i< parsed.length;i++){
+        out += getCode(parsed[i]);
+    }
+    return out;
 }
