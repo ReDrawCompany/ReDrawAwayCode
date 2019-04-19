@@ -120,3 +120,5 @@ class brainfuck {
         this.c.push( ...code.split( "" ) );
     }
 }
+
+export default brainfuck;
