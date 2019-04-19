@@ -85,7 +85,7 @@ function getStringForLitArr( argu ) {
 
 function convert( litArr ) {
     let text = ( typeof litArr == "string" ) ? litArr : getStringForLitArr(arguments);
-    console.log(convert);
+    console.log(arguments);
     let parsed = parser.parse( text );
     let out = "";
     for( let i = 0;i < parsed.length;i++ ) {
