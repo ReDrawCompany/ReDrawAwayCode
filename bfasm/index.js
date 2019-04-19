@@ -53,7 +53,7 @@ let pointer = 0;`;
                 out += "\nmem[pointer] = prompt('?');"
                 break;
             case "[":
-                out += "\nwhile(mem[pointer == 0]) {"
+                out += "\nwhile(mem[pointer !== 0]) {"
                 break;
             case "]":
                 out += "\n};"
