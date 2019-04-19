@@ -45,8 +45,8 @@ let cmds = {
         console.log(inpos);
         console.log(outpos);
 
-        
-        usrcode += convert`swp ${ inpos.toString() }`;
+
+        usrcode += convert`swp ${ JSON.stringify(pos) }`;
         usrcode += "s";
         for( let i = 0;i < inpos.length;i++ ) {
             usrcode += convert`mov ${ inpos[ i ] } ${ inpos[ i ] + inpos.length },${ inpos[ i ] + inpos.length * 2 }`;
