@@ -36,22 +36,30 @@ let pointer = 0;`;
         switch(code.charAt(i)) {
             case ">":
                 out += "pointer++;"
+                break;
             case "<":
                 out += "pointer--;"
+                break;
             case "+":
                 out += "mem[pointer]++;"
+                break;
             case "-":
                 out += "mem[pointer]--;"
+                break;
             case ".":
                 out += "alert(mem[pointer]);"
+                break;
             case ",":
                 out += "mem[pointer] = prompt('?');"
+                break;
             case "[":
                 out += "while(mem[pointer == 0]) {"
+                break;
             case "]":
                 out += "};"
+                break;
         }
     }
     return new Function("",out);
-    
+
 }
