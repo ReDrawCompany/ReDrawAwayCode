@@ -70,6 +70,14 @@ let cmds = {
 
         usrcode += "s";
         return usrcode;
+    },
+    eval( codes ) {
+        let out = "";
+        let dict = "+-<>[].,".split( "" );
+        for( let i of codes ) {
+            out += dict[ i ];
+        }
+        return out;
     }
 };
 
