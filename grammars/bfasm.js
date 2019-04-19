@@ -676,6 +676,3 @@ var parser = ( function() {
     Parser.prototype = parser; parser.Parser = Parser;
     return new Parser;
 })();
-
-
-export default Parser;
