@@ -83,7 +83,9 @@ let pointer = 0;`;
                 out += "\n};"
                 break;
             case "s":
-                out += "\n};"
+                if( config.dualMem ) {
+                    out += "\n};"
+                }
                 break;
         }
     }
