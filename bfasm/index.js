@@ -8,11 +8,11 @@ let cmds = {
         let usrcode = "";
 
         for( let i = 0;i < outpos.length;i++ ) {
-            usrcode += r( ">", outpos[ i ] ) + "+" + r( ">", outpos[ i ] );
+            usrcode += r( ">", outpos[ i ] ) + "+" + r( "<", outpos[ i ] );
         }
 
         return `${ r( ">", inpos[ 0 ] ) }[-${ r( "<", inpos[ 0 ] ) }${ usrcode }${ r( ">", inpos[ 0 ] ) }]${ r( "<", inpos[ 0 ] ) }`;
-    
+
     }
 };
 function getCode( funcObject ) {
@@ -23,8 +23,8 @@ function convert( litArr ) {
     let text = litArr[ 0 ];
     let parsed = parser.parse( text );
     let out = "";
-    for(let i = 0;i< parsed.length;i++){
-        out += getCode(parsed[i]);
+    for( let i = 0;i < parsed.length;i++ ) {
+        out += getCode( parsed[ i ] );
     }
     return out;
 }
