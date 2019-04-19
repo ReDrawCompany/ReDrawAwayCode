@@ -42,11 +42,11 @@ let cmds = {
     },
     add( inpos, outpos ) {
         let usrcode = "";
-        console.log(inpos);
-        console.log(outpos);
+        console.log( inpos );
+        console.log( outpos );
 
 
-        usrcode += convert`swp ${ JSON.stringify(pos) }`;
+        usrcode += convert`swp ${ JSON.stringify( pos ) }`;
         usrcode += "s";
         for( let i = 0;i < inpos.length;i++ ) {
             usrcode += convert`mov ${ inpos[ i ] } ${ inpos[ i ] + inpos.length },${ inpos[ i ] + inpos.length * 2 }`;
@@ -74,8 +74,20 @@ function cleanBF( code, rec ) {
     }
 }
 
+function getStringForLitArr( argu ) {
+    let args = Array.from( argu );
+    let out = args[ 0 ][ 0 ];
+    let strs = args[0];
+    let rest = args.slice( 1 );
+
+    for(let i = 0;i<strs.length;i++) {
+        out += rest[i] + strs[i];
+    }
+    return out;
+}
+
 function convert( litArr ) {
-    let text = (typeof litArr == "string")?litArr:litArr[ 0 ];
+    let text = ( typeof litArr == "string" ) ? litArr : litArr[ 0 ];
     let parsed = parser.parse( text );
     let out = "";
     for( let i = 0;i < parsed.length;i++ ) {
