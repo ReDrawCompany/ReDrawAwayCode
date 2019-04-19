@@ -52,4 +52,5 @@ let pointer = 0;`;
                 out += "};"
         }
     }
+    return new Function("",out);
 }
