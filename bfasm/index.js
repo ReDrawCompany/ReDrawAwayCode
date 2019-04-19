@@ -99,15 +99,20 @@ function getCode( funcObject ) {
 }
 
 function cleanBF( code, rec ) {
-    code = code.replace( /\<\>/, "" );
-    code = code.replace( /\>\</, "" );
-    code = code.replace( /\+\-/, "" );
-    code = code.replace( /\-\+/, "" );
+    code = code.replace( /\<\>/g, "" );
+    code = code.replace( /\>\</g, "" );
+    code = code.replace( /\+\-/g, "" );
+    code = code.replace( /\-\+/g, "" );
     if( !rec && code !== cleanBF( code, true ) ) {
         return cleanBF( code );
     } else {
         return code;
     }
+}
+function origBF(code) {
+    code = code.replace(/s/g, r(">",128));
+    code = code.replace(/b/g, r("<",128));
+    return code;
 }
 
 function getStringForLitArr( argu ) {
@@ -129,6 +134,7 @@ function convert( litArr ) {
     for( let i = 0;i < parsed.length;i++ ) {
         out += getCode( parsed[ i ] );
     }
+    out = origBF(out);
     out = cleanBF( out );
     return out;
 }
@@ -166,6 +172,16 @@ let tempvar = null;`;
                 out += "\n};"
                 break;
             case "s":
+                if( config.dualMem ) {
+                    out += `
+{
+    tempvar = mem;
+    mem = mem2;
+    mem2 = tempvar;
+}`;
+                }
+                break;
+            case "b":
                 if( config.dualMem ) {
                     out += `
 {
