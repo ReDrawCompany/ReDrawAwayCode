@@ -81,5 +81,4 @@ let pointer = 0;`;
     }
     out += "\n\nreturn {pointer, mem};";
     return new Function( "", out );
-
 }
