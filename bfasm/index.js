@@ -68,6 +68,15 @@ let cmds = {
 
         return usrcode;
     },
+    swpb( pos ) {
+        let usrcode = "";
+
+        for( let i = 0;i < pos.length;i++ ) {
+            usrcode += r( ">", pos[ i ] ) + "[-b+s]" + r( "<", pos[ i ] );
+        }
+
+        return usrcode;
+    },
     sum( inpos, outpos ) {
         let usrcode = "";
 
@@ -76,7 +85,7 @@ let cmds = {
         for( let i = 0;i < inpos.length;i++ ) {
             usrcode += convert`mov ${ inpos[ i ] } ${ inpos[ i ] + inpos.length },${ inpos[ i ] + inpos.length * 2 }`;
             usrcode += convert`mov ${ inpos[ i ] + inpos.length * 2 } ${ inpos[ i ] }`
-            usrcode += convert`swp ${ inpos[ i ] }`;
+            usrcode += convert`swpb ${ inpos[ i ] }`;
             usrcode += convert`mov ${ inpos[ i ] + inpos.length } ${ inpos[ i ] }`
             // usrcode += convert`mov ${ inpos[ i ] } ${ outpos[ 0 ] }`;
             usrcode += `${ r( ">", inpos[ i ] ) }[-${ r( "<", inpos[ i ] ) }${ r( ">", outpos[ 0 ] ) }s+b${ r( "<", outpos[ 0 ] ) }${ r( ">", inpos[ i ] ) }]${ r( "<", inpos[ i ] ) }`;
