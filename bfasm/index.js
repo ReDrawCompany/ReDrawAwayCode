@@ -18,6 +18,14 @@ function getCode( funcObject ) {
     return cmds[ funcObject.cmd ]( ...funcObject.args );
 }
 
+function cleanBF(code) {
+    code = code.replace(/\<\>/,"");
+    code = code.replace(/\>\</,"");
+    code = code.replace(/\+\-/,"");
+    code = code.replace(/\-\+/,"");
+    return code;
+}
+
 function convert( litArr ) {
     let text = litArr[ 0 ];
     let parsed = parser.parse( text );
@@ -25,6 +33,7 @@ function convert( litArr ) {
     for( let i = 0;i < parsed.length;i++ ) {
         out += getCode( parsed[ i ] );
     }
+    out = cleanBF(out);
     return out;
 }
 
