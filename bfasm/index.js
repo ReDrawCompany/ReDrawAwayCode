@@ -26,7 +26,7 @@ let cmds = {
         let usrcode = "";
 
         for( let i = 0;i < outpos.length;i++ ) {
-            usrcode += r( ">", outpos[ i ] ) + "s+s" + r( "<", outpos[ i ] );
+            usrcode += r( ">", outpos[ i ] ) + "s+b" + r( "<", outpos[ i ] );
         }
 
         return `${ r( ">", inpos[ 0 ] ) }[-${ r( "<", inpos[ 0 ] ) }${ usrcode }${ r( ">", inpos[ 0 ] ) }]${ r( "<", inpos[ 0 ] ) }`;
@@ -62,7 +62,7 @@ let cmds = {
         let usrcode = "";
 
         for( let i = 0;i < pos.length;i++ ) {
-            usrcode += r( ">", pos[ i ] ) + "[-s+s]" + r( "<", pos[ i ] );
+            usrcode += r( ">", pos[ i ] ) + "[-s+b]" + r( "<", pos[ i ] );
         }
 
         return usrcode;
@@ -78,15 +78,15 @@ let cmds = {
             usrcode += convert`swp ${ inpos[ i ] }`;
             usrcode += convert`mov ${ inpos[ i ] + inpos.length } ${ inpos[ i ] }`
             // usrcode += convert`mov ${ inpos[ i ] } ${ outpos[ 0 ] }`;
-            usrcode += `${r(">",inpos[i])}[-${r("<",inpos[i])}${r(">",outpos[0])}s+s${r("<",outpos[0])}${r(">",inpos[i])}]${r("<",inpos[i])}`;
+            usrcode += `${r(">",inpos[i])}[-${r("<",inpos[i])}${r(">",outpos[0])}s+b${r("<",outpos[0])}${r(">",inpos[i])}]${r("<",inpos[i])}`;
         }
 
-        usrcode += "s";
+        usrcode += "b";
         return usrcode;
     },
     eval( codes ) {
         let out = "";
-        let dict = "+-<>[].,s".split( "" );
+        let dict = "+-<>[].,sb".split( "" );
         for( let i of codes ) {
             out += dict[ i ];
         }
