@@ -27,12 +27,12 @@ function getCode( funcObject ) {
     return cmds[ funcObject.cmd ]( ...funcObject.args );
 }
 
-function cleanBF( code ) {
+function cleanBF( code, rec ) {
     code = code.replace( /\<\>/, "" );
     code = code.replace( /\>\</, "" );
     code = code.replace( /\+\-/, "" );
     code = code.replace( /\-\+/, "" );
-    if( code !== cleanBF( code ) ) {
+    if( !rec && code !== cleanBF( code, true ) ) {
         return cleanBF( code );
     } else {
         return code;
