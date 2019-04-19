@@ -7,6 +7,7 @@ function r( c, t ) {
     for( let i = 0;i < t;i++ ) { o += c }
     return o;
 }
+
 let cmds = {
     mov( inpos, outpos ) {
         let usrcode = "";
@@ -52,7 +53,6 @@ function cleanBF( code, rec ) {
         return code;
     }
 }
-
 
 function convert( litArr ) {
     let text = litArr[ 0 ];
@@ -108,5 +108,4 @@ mem2 = temp1;`;
     }
     out += "\n\nreturn {pointer, mem};";
     return new Function( "", out );
-
 }
