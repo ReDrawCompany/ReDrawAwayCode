@@ -73,7 +73,8 @@ function bf( code ) {
     out = `
 let mem = new Uint8Array(256);
 let mem2 = new Uint8Array(256);
-let pointer = 0;`;
+let pointer = 0;
+let tempvar = null;`;
     for( let i = 0;i < code.length;i++ ) {
         switch( code.charAt( i ) ) {
             case ">":
@@ -104,9 +105,9 @@ let pointer = 0;`;
                 if( config.dualMem ) {
                     out += `
 {
-    let temp1 = mem;
+    tempvar = mem;
     mem = mem2;
-    mem2 = temp1;
+    mem2 = tempvar;
 }`;
                 }
                 break;
