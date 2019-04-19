@@ -66,6 +66,10 @@ let cmds = {
         for( let i = 0;i < inpos.length;i++ ) {
             usrcode += convert`mov ${ inpos[ i ] } ${ inpos[ i ] + inpos.length },${ inpos[ i ] + inpos.length * 2 }`;
             usrcode += convert`mov ${ inpos[ i ] + inpos.length * 2 } ${ inpos[ i ] }`
+            usrcode += convert`swp ${ JSON.stringify( inpos ) }`;
+            usrcode += convert`mov ${ inpos[ i ] + inpos.length } ${ inpos[ i ] }`
+            usrcode += convert`mov ${ inpos[ i ] } ${ outpos[ 0 ] }`;
+            usrcode += convert`swp ${ outpos[ 0 ] }`;            
         }
 
         usrcode += "s";
