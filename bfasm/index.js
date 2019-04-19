@@ -4,7 +4,7 @@ function r( c, t ) {
     return o;
 }
 let cmds = {
-    mov: function( inpos, outpos ) {
+    mov( inpos, outpos ) {
         let usrcode = "";
 
         for( let i = 0;i < outpos.length;i++ ) {
@@ -12,17 +12,26 @@ let cmds = {
         }
 
         return `${ r( ">", inpos[ 0 ] ) }[-${ r( "<", inpos[ 0 ] ) }${ usrcode }${ r( ">", inpos[ 0 ] ) }]${ r( "<", inpos[ 0 ] ) }`;
+    },
+    "set":function( inpos, outpos ) {
+        let usrcode = "";
+
+        for( let i = 0;i < inpos.length;i++ ) {
+            usrcode += r( ">", inpos[ i ] ) + r("+",outpos[0]) + r( "<", inpos[ i ] );
+        }
+
+        return usrcode;
     }
 };
 function getCode( funcObject ) {
     return cmds[ funcObject.cmd ]( ...funcObject.args );
 }
 
-function cleanBF(code) {
-    code = code.replace(/\<\>/,"");
-    code = code.replace(/\>\</,"");
-    code = code.replace(/\+\-/,"");
-    code = code.replace(/\-\+/,"");
+function cleanBF( code ) {
+    code = code.replace( /\<\>/, "" );
+    code = code.replace( /\>\</, "" );
+    code = code.replace( /\+\-/, "" );
+    code = code.replace( /\-\+/, "" );
     return code;
 }
 
@@ -33,7 +42,7 @@ function convert( litArr ) {
     for( let i = 0;i < parsed.length;i++ ) {
         out += getCode( parsed[ i ] );
     }
-    out = cleanBF(out);
+    out = cleanBF( out );
     return out;
 }
 
@@ -41,8 +50,8 @@ function bf( code ) {
     out = `
 let mem = new Uint8Array(256);
 let pointer = 0;`;
-    for(let i = 0; i<code.length;i++) {
-        switch(code.charAt(i)) {
+    for( let i = 0;i < code.length;i++ ) {
+        switch( code.charAt( i ) ) {
             case ">":
                 out += "\npointer++;"
                 break;
@@ -70,6 +79,6 @@ let pointer = 0;`;
 
         }
     }
-    return new Function("",out);
+    return new Function( "", out );
 
 }
