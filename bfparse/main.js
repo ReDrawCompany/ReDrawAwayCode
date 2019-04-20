@@ -12,3 +12,7 @@ window.bf = brainfuck;
 let a = new brainfuck;
 window.a = a;
 
+let code = html `<div></div>`;
+setInterval(()=>{
+    code.innerHTML = a.c.join("").substr(0,a.cp)+"["+a.c.join("").substr(a.cp+1,1)+"]"+a.c.join("").substr(a.cp+2)
+},100)
