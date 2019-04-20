@@ -1,5 +1,5 @@
 let length = 256;
-// peep
+// pee
 class brainfuck {
     constructor() {
 
