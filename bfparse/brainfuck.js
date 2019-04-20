@@ -92,7 +92,9 @@ class brainfuck {
                         }
                         this.cp--;
                         if( this.cp == 0 ) {
-                            throw new Error( `No matching bracket at ${ oldcp }` );
+                            throw new Error( `No matching bracket at ${ oldcp }
+${this.c.join("").substr(oldcp-3,7)}
+---^---` );
                         }
                     }
                 }
