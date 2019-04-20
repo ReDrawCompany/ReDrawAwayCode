@@ -1,5 +1,5 @@
 import brainfuck from "./brainfuck.js";
-//me
+//mem
 function html(test) {
     let a = document.createElement("div");
     a.innerHTML = test;
