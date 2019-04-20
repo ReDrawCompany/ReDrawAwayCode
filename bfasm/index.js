@@ -7,6 +7,14 @@ let config = {
     dualMemDist: 32
 }
 
+let furthest = 0;
+
+function chk(posArr) {
+    for(let i of posArr) {
+        furthest = i>furthest?i:furthest;
+    }
+}
+
 function r( c, t ) {
     let o = "";
     for( let i = 0;i < t;i++ ) { o += c }
@@ -101,7 +109,14 @@ let cmds = {
             out += dict[ i ];
         }
         return out;
-    }
+    },
+    strlp() {
+        return "[-";
+    },
+    endlp() {
+        return "]";
+    },
+
 };
 
 function getCode( funcObject ) {
