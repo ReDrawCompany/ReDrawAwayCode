@@ -3,7 +3,7 @@ import brainfuck from "./brainfuck.js";
 function html(test) {
     let a = document.createElement("div");
     a.innerHTML = test;
-    document.appendChild(a.firstChild);
+    document.body.appendChild(a.firstChild);
     return a.firstChild;
 }
 
