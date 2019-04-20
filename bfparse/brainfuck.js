@@ -85,6 +85,7 @@ class brainfuck {
                     while( flag ) {
                         flag = this.c[ this.cp ] !== "[";
                         flag = flag || this.ld2 > 0;
+                        if(!flag) break;
                         if( this.c[ this.cp ] == "]" ) {
                             this.ld2++;
                         }
