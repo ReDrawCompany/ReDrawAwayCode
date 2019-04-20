@@ -1,4 +1,5 @@
 let length = 256;
+//
 class brainfuck {
     constructor() {
 
