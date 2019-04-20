@@ -4,7 +4,7 @@ function html(test) {
     let a = document.createElement("div");
     a.innerHTML = test;
     document.body.appendChild(a.firstChild);
-    return a.firstChild;
+    return a.firstElementChild;
 }
 
 window.bf = brainfuck;
