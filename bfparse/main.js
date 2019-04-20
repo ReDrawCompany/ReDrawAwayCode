@@ -15,5 +15,5 @@ window.a = a;
 
 let code = html `<div></div>`;
 setInterval(()=>{
-    code.innerHTML = a.c.join("").substr(0,a.cp)+"<span style=\"color: red;\">"+a.c.join("").substr(a.cp,1)+"</span>"+a.c.join("").substr(a.cp+2)
+    code.innerHTML = a.c.join("").substr(0,a.cp)+"<span style=\"color: red;\">"+a.c.join("").substr(a.cp,1)+"</span>"+a.c.join("").substr(a.cp+1)
 },100)
