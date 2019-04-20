@@ -156,6 +156,7 @@ function cleanBF( code, rec ) {
     }
 }
 function origBF( code ) {
+    config.dualMemDist = furthest;
     code = code.replace( /s/g, r( ">", config.dualMemDist ) );
     code = code.replace( /b/g, r( "<", config.dualMemDist ) );
     return code;
