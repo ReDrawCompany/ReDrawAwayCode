@@ -116,7 +116,24 @@ let cmds = {
     endlp() {
         return "]";
     },
-
+    mul(inpos, outpos){
+        let out = convert `
+movswp ${inpos[0]} 0
+movswp ${inpos[1]} 1`
++"s"+convert`
+strlp 0
+mov 1 2,3
+mov 3 1
+add 1 4
+endlp
+mov 4 0
+movswp 0 ${inpos[0]}
+movswp 1 ${inpos[1]}
+movswp 2 ${outpos[0]}`+"b";
+        //`[->>>>+>+<<<<<]>>>>>[-<<<<<+>>>>>]<<<<<[->[->+>+<<]>>[-<<+>>]<<<]>>>>[-<<<<+>>>>]<<<<`;
+        // from [5,5,0,0,0]
+        // to [5,5,25,0,0]
+    }
 };
 
 function getCode( funcObject ) {
@@ -162,7 +179,7 @@ function convert( litArr ) {
     for( let i = 0;i < parsed.length;i++ ) {
         out += getCode( parsed[ i ] );
     }
-    out = origBF( out );
+    // out = origBF( out );
     out = cleanBF( out );
     return out;
 }
