@@ -1,5 +1,5 @@
 let ghpages = {
-    ver: 33
+    ver: 34
 }
 
 let config = {
