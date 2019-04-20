@@ -120,6 +120,9 @@ let cmds = {
 };
 
 function getCode( funcObject ) {
+    for(let i of funcObject.args) {
+        chk(i);
+    }
     return ( cmds[ funcObject.cmd ] || console.error )( ...funcObject.args );
 }
 
