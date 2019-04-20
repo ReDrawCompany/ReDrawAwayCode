@@ -119,6 +119,24 @@ class brainfuck {
     addCodeString( code ) {
         this.c.push( ...code.split( "" ) );
     }
+
+    reset() {
+        for( let i = 0;i < this.m.length;i++ ) {
+            this.m[ i ] = 0;
+        }
+        this.mp = 0;
+        this.cp = 0;
+        this.ld = 0;
+        this.ld2 = 0;
+        this.esc = "";
+        this.run = true;
+        this.inp = [];
+        this.out = [];
+    }
+
+    clearCode() {
+        this.c = [];
+    }
 }
 
 export default brainfuck;
