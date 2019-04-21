@@ -82,9 +82,7 @@ class brainfuck {
                     let flag = true;
                     let oldcp = this.cp;
                     this.cp--;
-                    while( flag ) {
-                        flag = this.c[ this.cp ] !== "[";
-                        flag = flag || this.ld2 > 0;
+                    while( this.c[ this.cp ] !== "[" || this.ld2 > 0) {
                         if(!flag) break;
                         if( this.c[ this.cp ] == "]" ) {
                             this.ld2++;
