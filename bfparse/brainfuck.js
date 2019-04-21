@@ -1,5 +1,5 @@
 let length = 256;
-// very
+// ve
 class brainfuck {
     constructor() {
 
