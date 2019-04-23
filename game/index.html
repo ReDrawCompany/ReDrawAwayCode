@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Emi's Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+    <script>
+        class rectangle {
+            constructor(x, y, w, h, c) {
+                this.x = x || 0;
+                this.y = y || 0;
+                this.w = w || 0;
+                this.h = h || 0;
+                this.c = c || "#ffffff";
+            }
+
+            collision(r2) {
+                return (
+                    this.x + this.w > r2.x &&
+                    this.x < r2.x + r2.w &&
+                    r2.y + r2.h > this.y &&
+                    r2.y < this.y + this.h
+                );
+            }
+
+            draw() {
+                // stroke("#000000");
+                // strokeWeight(3);
+                noStroke();
+
+                fill(this.c);
+                rect(this.x, this.y, this.w, this.h);
+            }
+
+            center() {
+                return {
+                    x: this.x + (this.w * 0.5),
+                    y: this.y + (this.h * 0.5)
+                }
+            }
+
+            distance(other) {
+                let cen = other.center();
+                let ten = this.center();
+                return Math.sqrt((ten.x - cen.x) ** 2 + (ten.y - cen.y) ** 2)
+            }
+        }
+
+        let query = JSON.parse(location.search.replace(/([a-zA-Z]+)=([a-zA-Z0-9=]+)&/g, '"$1":"$2",').replace(
+            /([a-zA-Z]+)=([a-zA-Z0-9=]+)/g, '"$1":"$2"').replace("?", "{") + "}");
+
+        let world = JSON.parse(atob(query.l));
+
+        let placeFree = function (xNew, yNew) {
+            let temp = new rectangle(xNew, yNew, player.w, player.h);
+
+            let cond = true;
+            for (let i of walls) {
+                cond = cond && !i.collision(temp);
+            }
+            return cond;
+        };
+
+        const colors = [
+                "#000000",
+                "#1D2B53",
+                "#7E2553",
+                "#008751",
+                "#AB5236",
+                "#5F574F",
+                "#C2C3C7",
+                "#FFF1E8",
+                "#FF004D",
+                "#FFA300",
+                "#FFEC27",
+                "#00E436",
+                "#29ADFF",
+                "#83769C",
+                "#FF77A8",
+                "#FFCCAA"
+            ],
+            spd = 7,
+            jumpHeight = 18;
+
+        let gravity = 0,
+            jumpSpeed = 0;
+
+        // let world = {
+        //     playerPos: [32, 32],
+        //     world: [
+        //         [0, 0, 32, 32 * 8],
+        //         [32 * 7, 0, 32, 32 * 8],
+        //         [32, 32 * 7, 32 * 6, 32]
+        //     ]
+        // };
+
+
+        let objects = world.layers[0].objects;
+
+        let playerObj = objects.filter(x => x.name == "player")[0]
+
+        let player = new rectangle(
+            playerObj.x,
+            playerObj.y,
+            playerObj.width,
+            playerObj.height,
+            colors[playerObj.properties.filter(x => x.name == "color")[0].value]
+        );
+
+        let walls = objects.filter(x => x.type == "wall").map(x => {
+            let a;
+            if (x.properties.filter(x => x.name == "color").length == 0) {
+                a = new rectangle(x.x, x.y, x.width, x.height, colors[1]);
+            } else {
+                a = new rectangle(x.x, x.y, x.width, x.height, colors[x.properties.filter(x => x.name ==
+                    "color")[0]]);
+            }
+            return a;
+        });
+
+        function tween(v1, v2, tw) {
+            return (v1 * (1 - tw)) + (v2 * (tw));
+        }
+
+        function setup() {
+            createCanvas(innerWidth, innerHeight);
+        }
+
+        let camera = new rectangle(0, 0, 0, 0, "#00000000");
+
+        function draw() {
+            translate(
+                -camera.center().x + width / 2,
+                -camera.center().y + height / 2
+            );
+            background(colors[12]);
+            walls.forEach(x => x.draw());
+            player.draw();
+            movePlayer();
+            if (camera.distance(player) > 64) {
+                camera.x = tween(camera.x, player.x, 0.05);
+                camera.y = tween(camera.y, player.y, 0.05);
+            }
+        }
+
+        let up = 0;
+        let down = 0;
+        let left = 0;
+        let right = 0;
+
+        function keyPressed() {
+            if (keyCode === UP_ARROW) {
+                up = 1;
+            }
+            if (keyCode === DOWN_ARROW) {
+                down = 1;
+            }
+            if (keyCode === LEFT_ARROW) {
+                left = 1;
+            }
+            if (keyCode === RIGHT_ARROW) {
+                right = 1;
+            }
+        }
+
+        function keyReleased() {
+            if (keyCode === UP_ARROW) {
+                up = 0;
+            }
+            if (keyCode === DOWN_ARROW) {
+                down = 0;
+            }
+            if (keyCode === LEFT_ARROW) {
+                left = 0;
+            }
+            if (keyCode === RIGHT_ARROW) {
+                right = 0;
+            }
+        }
+
+        function movePlayer() {
+            let dir = right - left;
+
+            for (let s = spd; s > 0; s--) {
+                if (placeFree(player.x + spd * dir, player.y)) {
+                    player.x += spd * dir;
+                    s = 0; // better than break
+                }
+            }
+
+            if (up && !placeFree(player.x, player.y + 1)) {
+                jumpSpeed = jumpHeight;
+            }
+
+            if (jumpSpeed > 0) {
+                playerJump();
+            } else {
+                playerFall();
+            }
+        }
+
+        function playerFall() {
+            for (var i = gravity; i > 0; i--) {
+                if (placeFree(player.x, player.y + i)) {
+                    player.y += i;
+                    break;
+                }
+            }
+
+            if (placeFree(player.x, player.y + 1)) {
+                gravity++;
+            } else {
+                gravity = 0;
+            }
+        }
+
+        function playerJump() {
+            if (!placeFree(player.x, player.y - 1)) {
+                jumpSpeed = 0;
+            }
+
+            for (var i = jumpSpeed; i > 0; i--) {
+                if (placeFree(player.x, player.y - i)) {
+                    player.y -= i;
+                    i = 0;
+                }
+            }
+
+            jumpSpeed--;
+        }
+    </script>
+</head>
+
+<body></body>
+
+</html>
