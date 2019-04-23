@@ -11,6 +11,11 @@
             margin: 0;
             overflow: hidden;
         }
+
+        canvas {
+            background-color: #1D2B53;
+            background: radial-gradient(circle, #29ADFF 0%, #1D2B53 100%);
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
     <script>
@@ -142,7 +147,8 @@
                 -camera.center().x + width / 2,
                 -camera.center().y + height / 2
             );
-            background(colors[12]);
+            clear();
+            // background(colors[12]);
             walls.forEach(x => x.draw());
             player.draw();
             movePlayer();
